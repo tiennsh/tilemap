@@ -39,6 +39,13 @@ public class Player_1 : Singleton<Player_1>
 
     void MoveHandle()
     {
+        if (m_amin)
+        {
+            m_amin.SetBool("Down", false);
+            m_amin.SetBool("Right", false);
+            m_amin.SetBool("Up", false);
+            m_amin.SetBool("Left", false);
+        }
         if (GamePadsController.Ins.CanMoveLeft)
         {
             if (m_rb)
@@ -82,7 +89,10 @@ public class Player_1 : Singleton<Player_1>
         else if (GamePadsController.Ins.CanMoveDown)
         {
             if (m_amin)
+            {
                 m_amin.SetBool("Down", true);
+            }    
+
             if (m_rb)
                 transform.position = new Vector3(
             transform.position.x ,
@@ -90,17 +100,6 @@ public class Player_1 : Singleton<Player_1>
             transform.position.y
             );
             move_name = "Down";
-        }
-        else
-        {
-            if (m_amin)
-            {
-                m_amin.SetBool("Down", false);
-                m_amin.SetBool("Right", false);
-                m_amin.SetBool("Up", false);
-                m_amin.SetBool("Left", false);
-            }    
-                
         }
     }
 

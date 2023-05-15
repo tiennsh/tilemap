@@ -29,6 +29,7 @@ public class CamController : MonoBehaviour
     public void LerpTriggerStop()
     {
         m_canLerp = false;
+        
     }
 
     public void LerpTrigger(float distX, float distY)

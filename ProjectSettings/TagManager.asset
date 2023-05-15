@@ -9,6 +9,8 @@ TagManager:
   - LakeWater
   - WoodTree
   - AxeAtk
+  - Arrow
+  - Mobs
   layers:
   - Default
   - TransparentFX
