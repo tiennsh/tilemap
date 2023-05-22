@@ -8,12 +8,21 @@ public class GameGUIManager : Singleton<GameGUIManager>
     public GameObject bowAtkBtn;
     public GameObject potAtkBtn;
     public GameObject potWaterAtkBtn;
+    public GameObject BagInventory;
 
-
+    bool isShowBag;
 
     public override void Awake()
     {
         MakeSingleton(false);
+        isShowBag = false;
+    }
+
+    public void ShowBag()
+    {
+        isShowBag = !isShowBag;
+        BagInventory.SetActive(isShowBag);
+        
     }
 
     public void ShowGameAtk(string m_isAtk)

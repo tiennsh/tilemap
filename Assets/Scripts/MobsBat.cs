@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MobsBat : Singleton<MobsBat>
 {
-    public GameObject player_1;
     public float moveSpeed;
 
     public int move_name;
@@ -12,6 +11,8 @@ public class MobsBat : Singleton<MobsBat>
     public int lerpTime;
 
     public bool isArrow = false;
+
+    public int timeSwap;
 
     Rigidbody2D m_rb;
 
@@ -113,8 +114,8 @@ public class MobsBat : Singleton<MobsBat>
     {
         float xPos = transform.position.x;
         float yPos = transform.position.y;
-        xPos = Mathf.Lerp(xPos, player_1.transform.position.x, lerpTime * Time.deltaTime);
-        yPos = Mathf.Lerp(yPos, player_1.transform.position.y, lerpTime * Time.deltaTime);
+        xPos = Mathf.Lerp(xPos, Player_1.Ins.transform.position.x, lerpTime * Time.deltaTime);
+        yPos = Mathf.Lerp(yPos, Player_1.Ins.transform.position.y, lerpTime * Time.deltaTime);
         transform.position = new Vector3(xPos, yPos, transform.position.z);
 
     }
@@ -122,6 +123,7 @@ public class MobsBat : Singleton<MobsBat>
     public void CheckArrow()
     {
         isArrow = true;
+        GameManager.Ins.SwapMobsBat(transform.position, move_name, timeSwap);
     }
 
     private void OnCollisionEnter2D(Collision2D col)

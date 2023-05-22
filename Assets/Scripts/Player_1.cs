@@ -13,7 +13,8 @@ public class Player_1 : Singleton<Player_1>
 
     bool atk;
     public string move_name = "Down";
-
+    public Sprite IconPlayer;
+    
 
     public override void Awake()
     {
@@ -114,4 +115,5 @@ public class Player_1 : Singleton<Player_1>
             
     }
 
+    
 }

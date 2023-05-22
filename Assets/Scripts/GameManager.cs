@@ -1,29 +1,25 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameObject player_1;
     public CamController mainCam;
     public Arrow arrowPrefab;
     public AxeAtk axeAtkPrefab;
     public TreeRoot treeRootPrefab;
     public TreeSmall treeSmallPrefab;
     public TreeMature treeMaturePrefab;
-
-
+    public MobsBat[] mobsBats;
+    public GameObject ChatBoxPanel;
 
     bool m_isShoot;
     string m_isItem;
+    
 
     public override void Awake()
     {
         MakeSingleton(false);
-    }
-
-    void Start()
-    {
         m_isItem = "axe";
         GameGUIManager.Ins.ShowGameAtk("axe");
     }
@@ -45,6 +41,13 @@ public class GameManager : Singleton<GameManager>
             GameGUIManager.Ins.ShowGameAtk(m_isItem);
         }
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Time.timeScale = 0f;
+            ChatBoxPanel.SetActive(true);
+            ChatBox.Ins.NextMessage();
+        }
+
     }
 
     IEnumerator ShootStop()
@@ -53,6 +56,22 @@ public class GameManager : Singleton<GameManager>
 
         m_isShoot = false;
     }
+
+    IEnumerator ReducedTime(Vector3 pos, int move_name, int timeSwap)
+    {
+        yield return new WaitForSeconds(timeSwap);
+
+        if (mobsBats != null)
+        {
+            MobsBat arrowMobsBat = Instantiate(mobsBats[move_name], pos, Quaternion.identity);
+        }
+    }
+
+    public void SwapMobsBat(Vector3 pos, int move_name, int timeSwap)  //Tạo quái sau XXs
+    {
+        StartCoroutine(ReducedTime(pos, move_name, timeSwap));
+    }
+
 
     public void Shoot()
     {
@@ -63,30 +82,30 @@ public class GameManager : Singleton<GameManager>
         {
             case "Down":
                 {
-                    xPos = new Vector3(player_1.transform.position.x,
-                        player_1.transform.position.y - 1.05f,
-                        player_1.transform.position.z);
+                    xPos = new Vector3(Player_1.Ins.transform.position.x,
+                        Player_1.Ins.transform.position.y - 1.05f,
+                        Player_1.Ins.transform.position.z);
                     break;
                 }
             case "Right":
                 {
-                    xPos = new Vector3(player_1.transform.position.x + 0.72f,
-                        player_1.transform.position.y,
-                        player_1.transform.position.z);
+                    xPos = new Vector3(Player_1.Ins.transform.position.x + 0.72f,
+                        Player_1.Ins.transform.position.y,
+                        Player_1.Ins.transform.position.z);
                     break;
                 }
             case "Up":
                 {
-                    xPos = new Vector3(player_1.transform.position.x,
-                        player_1.transform.position.y + 0.35f,
-                        player_1.transform.position.z);
+                    xPos = new Vector3(Player_1.Ins.transform.position.x,
+                        Player_1.Ins.transform.position.y + 0.35f,
+                        Player_1.Ins.transform.position.z);
                     break;
                 }
             case "Left":
                 {
-                    xPos = new Vector3(player_1.transform.position.x - 0.72f,
-                        player_1.transform.position.y,
-                        player_1.transform.position.z);
+                    xPos = new Vector3(Player_1.Ins.transform.position.x - 0.72f,
+                        Player_1.Ins.transform.position.y,
+                        Player_1.Ins.transform.position.z);
                     break;
                 }
         }
@@ -107,21 +126,14 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(ShootStop());
     }
 
-    void LerpStop()
-    {
-        if (player_1.transform.position.x == mainCam.transform.position.x 
-            && player_1.transform.position.y == mainCam.transform.position.y)
-            mainCam.LerpTriggerStop();
-    }
-
     void Lerp()
     {
-        if (mainCam && player_1)
+        if (mainCam != null)
         {
-            mainCam.LerpTrigger(player_1.transform.position.x, player_1.transform.position.y);
+            mainCam.LerpTrigger(Player_1.Ins.transform.position.x, Player_1.Ins.transform.position.y);
         }
-        if (player_1.transform.position.x == mainCam.transform.position.x
-            && player_1.transform.position.y == mainCam.transform.position.y)
+        if (Player_1.Ins.transform.position.x == mainCam.transform.position.x
+            && Player_1.Ins.transform.position.y == mainCam.transform.position.y)
             mainCam.LerpTriggerStop();
     }
 
@@ -148,4 +160,7 @@ public class GameManager : Singleton<GameManager>
             TreeMature treeMatureClone = Instantiate(treeMaturePrefab, Pos, Quaternion.identity);
         }
     }
+
+
+
 }

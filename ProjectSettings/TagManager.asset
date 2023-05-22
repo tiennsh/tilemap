@@ -11,11 +11,12 @@ TagManager:
   - AxeAtk
   - Arrow
   - Mobs
+  - NPC
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
