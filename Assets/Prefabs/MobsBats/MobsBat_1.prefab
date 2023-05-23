@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3982389182696101135}
   - component: {fileID: 3982389182696101136}
   - component: {fileID: 3982389182696101137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MobsBat_1
-  m_TagString: Mobs
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e21f436708925489408d276ae47f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_1: {fileID: 0}
   moveSpeed: 3
   move_name: 1
   lerpTime: 4

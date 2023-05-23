@@ -14,6 +14,7 @@ public class ItemPanel : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(1, 1, 1);
+        transform.position = Player_1.Ins.transform.position;
     }
     public virtual void SetItem(Item m_item)
     {

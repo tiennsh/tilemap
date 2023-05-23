@@ -14,7 +14,7 @@ public class Player_1 : Singleton<Player_1>
     bool atk;
     public string move_name = "Down";
     public Sprite IconPlayer;
-    
+    public bool isChatBox = false;
 
     public override void Awake()
     {
@@ -115,5 +115,12 @@ public class Player_1 : Singleton<Player_1>
             
     }
 
-    
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Monster"))
+        {
+            Debug.Log("Va cham");
+            GameGUIManager.Ins.LoadScene();
+        }
+    }
 }

@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
 
         if (Input.GetKeyDown(KeyCode.F))
         {
+            if (!Player_1.Ins.isChatBox) return;
             Time.timeScale = 0f;
             ChatBoxPanel.SetActive(true);
             ChatBox.Ins.NextMessage();
@@ -161,6 +162,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-
-
+     
+    
 }

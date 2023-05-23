@@ -12,21 +12,26 @@ public class ChatBox : Singleton<ChatBox>
     public TextMeshProUGUI NPCText;
     public TextMeshProUGUI PlayerText;
     public GameObject ChatBoxPanel;
+    public Sprite isUI;
 
     int indexMessage ;
+    Sprite isIconNPC;
+    Sprite isIconPlayer;
+    
 
     public override void Awake()
     {
         MakeSingleton(false);
     }
 
-    public virtual void SetMessage(Message[] m_messages, Sprite m_IconNPC, Sprite m_IconPlayer)
+    public virtual void SetMessage(Message[] m_messages,
+        Sprite m_IconNPC, Sprite m_IconPlayer)
     {
         Debug.Log("Message");
         indexMessage = 0;
         messages = m_messages;
-        if (IconNPC) IconNPC.sprite = m_IconNPC;
-        if (IconPlayer) IconPlayer.sprite = m_IconPlayer;
+        isIconNPC = m_IconNPC;
+        isIconPlayer = m_IconPlayer;
     }
 
     public virtual void NextMessage()
@@ -43,10 +48,14 @@ public class ChatBox : Singleton<ChatBox>
         {
             PlayerText.text = "";
             NPCText.text = messages[indexMessage].message.ToString();
+            if (isIconNPC != null) IconNPC.sprite = isIconNPC;
+            if (isUI != null) IconPlayer.sprite = isUI;
         }
         else
         {
             PlayerText.text = messages[indexMessage].message.ToString();
+            if (isIconPlayer != null) IconPlayer.sprite = isIconPlayer;
+            if (isUI != null) IconNPC.sprite = isUI;
         }
         indexMessage++;
     }

@@ -12,6 +12,7 @@ TagManager:
   - Arrow
   - Mobs
   - NPC
+  - Monster
   layers:
   - Default
   - TransparentFX

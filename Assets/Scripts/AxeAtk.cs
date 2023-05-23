@@ -10,9 +10,6 @@ public class AxeAtk : Singleton<AxeAtk>
     public override void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
-    }
-    void Start()
-    {
         StartCoroutine(AxeAtkStop());
     }
 

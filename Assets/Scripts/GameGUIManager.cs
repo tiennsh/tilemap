@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameGUIManager : Singleton<GameGUIManager>
 {
@@ -22,6 +23,7 @@ public class GameGUIManager : Singleton<GameGUIManager>
     {
         isShowBag = !isShowBag;
         BagInventory.SetActive(isShowBag);
+        UIItemPanel.Ins.ClearContent();
         
     }
 
@@ -53,5 +55,10 @@ public class GameGUIManager : Singleton<GameGUIManager>
             if (m_isAtk == "potWater")
                 potAtkBtn.SetActive(true);
         }
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

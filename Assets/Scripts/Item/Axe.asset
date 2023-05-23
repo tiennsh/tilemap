@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   itemCode: 1
-  itemType: 0
+  itemType: 1
   itemSprite: {fileID: 21300000, guid: 27fc5b7d37b4ec04b99f3800f2f7b031, type: 3}
   itemName: Axe
   itemDescription: mbi

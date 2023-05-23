@@ -9,9 +9,19 @@ public class UIItemPanel : Singleton<UIItemPanel>
 
     public void ShowItemPanel(Item item)
     {
+        ClearContent();
+
         ItemPanel itemPanel;
         itemPanel = createItemPanel(item);
         itemPanel.transform.SetParent(content);
+    }
+
+    public void ClearContent()
+    {
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     protected virtual ItemPanel createItemPanel(Item item)
